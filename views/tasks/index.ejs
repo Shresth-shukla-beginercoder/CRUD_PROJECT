@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/script.js" defer></script>
+    <script src="/js/effects.js" defer></script>
+</head>
+<body>
+    <input type="checkbox" id="menu-toggle" hidden>
+    <header class="topbar">
+        <a href="/" class="logo">✨ TaskFlow</a>
+        <label for="menu-toggle" class="burger"><span></span><span></span><span></span></label>
+    </header>
+    <label for="menu-toggle" class="overlay"></label>
+    <nav class="drawer">
+        <a href="/">🏠 Home</a>
+        <a href="/tasks">📋 View Tasks</a>
+        <a href="/tasks/new">➕ New Task</a>
+        <button type="button" id="hue-btn">🎨 Change Colors</button>
+    </nav>
+
+    <main class="wrap">
+        <h1 class="wobble">Task Manager</h1>
+        <a class="btn" href="/tasks/new">➕ Create New Task</a>
+
+        <h2>Tasks</h2>
+
+        <!-- Search -->
+        <form class="search" action="/tasks" method="GET">
+            <input type="text" name="q" placeholder="🔍 Search by title" value="<%= search %>">
+            <button type="submit">Search</button>
+        </form>
+
+        <!-- Filters -->
+        <div class="filters">
+            <a class="pill" href="/tasks">All</a>
+            <a class="pill" href="/tasks?status=pending">Pending</a>
+            <a class="pill" href="/tasks?status=complete">Complete</a>
+        </div>
+
+        <% if (tasks.length === 0) { %>
+
+            <div class="empty"><span>📭</span>No tasks found. Create one to get started.</div>
+
+        <% } else { %>
+
+            <% tasks.forEach((task) => { %>
+
+                <div class="task <%= task.is_complete ? 'done' : '' %>">
+                    <h3><%= task.title %></h3>
+                    <p><%= task.description %></p>
+                    <span class="badge"><%= task.is_complete ? 'Complete' : 'Pending' %></span>
+
+                    <div class="actions">
+                        <a class="btn" href="/tasks/<%= task.id %>/edit">✏️ Edit</a>
+
+                        <form class="delete-form" action="/tasks/<%= task.id %>/delete" method="POST">
+                            <button type="submit">🗑️ Delete</button>
+                        </form>
+
+                        <form class="toggle-form" action="/tasks/<%= task.id %>/toggle-complete" method="POST">
+                            <button type="submit">
+                                <%= task.is_complete ? "↩️ Mark as Pending" : "✅ Mark as Complete" %>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            <% }); %>
+
+        <% } %>
+    </main>
+</body>
+</html>

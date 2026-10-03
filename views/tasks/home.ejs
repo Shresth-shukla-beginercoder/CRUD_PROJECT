@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/effects.js" defer></script>
+</head>
+<body>
+    <input type="checkbox" id="menu-toggle" hidden>
+    <header class="topbar">
+        <a href="/" class="logo">✨ TaskFlow</a>
+        <label for="menu-toggle" class="burger"><span></span><span></span><span></span></label>
+    </header>
+    <label for="menu-toggle" class="overlay"></label>
+    <nav class="drawer">
+        <a href="/">🏠 Home</a>
+        <a href="/tasks">📋 View Tasks</a>
+        <a href="/tasks/new">➕ New Task</a>
+        <button type="button" id="hue-btn">🎨 Change Colors</button>
+    </nav>
+
+    <main class="wrap center">
+        <h1 class="wobble">Task Manager</h1>
+
+        <p>Manage your tasks easily.</p>
+
+        <a class="btn" href="/tasks">View Tasks</a>
+        <br><br>
+        <a class="btn" href="/tasks/new">Create New Task</a>
+
+        <div class="crud">
+            <div class="crud-card"><b>C</b>Create<code>POST /tasks</code></div>
+            <div class="crud-card"><b>R</b>Read<code>GET /tasks</code></div>
+            <div class="crud-card"><b>U</b>Update<code>POST /tasks/:id</code></div>
+            <div class="crud-card"><b>D</b>Delete<code>POST /tasks/:id/delete</code></div>
+        </div>
+    </main>
+</body>
+</html>

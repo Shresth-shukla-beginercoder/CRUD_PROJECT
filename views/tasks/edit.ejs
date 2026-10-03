@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Task</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/effects.js" defer></script>
+</head>
+<body>
+    <input type="checkbox" id="menu-toggle" hidden>
+    <header class="topbar">
+        <a href="/" class="logo">✨ TaskFlow</a>
+        <label for="menu-toggle" class="burger"><span></span><span></span><span></span></label>
+    </header>
+    <label for="menu-toggle" class="overlay"></label>
+    <nav class="drawer">
+        <a href="/">🏠 Home</a>
+        <a href="/tasks">📋 View Tasks</a>
+        <a href="/tasks/new">➕ New Task</a>
+        <button type="button" id="hue-btn">🎨 Change Colors</button>
+    </nav>
+
+    <main class="wrap">
+
+    <h1 class="wobble">Edit Task</h1>
+
+    <form class="panel" action="/tasks/<%= task.id %>" method="POST">
+
+        <label for="title">Title:</label>
+        <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Enter task title"
+            required
+            value="<%= task.title %>"
+        >
+
+        <br><br>
+
+        <label for="description">Description:</label>
+        <textarea
+            id="description"
+            name="description"
+            placeholder="Enter task description"
+        ><%= task.description %></textarea>
+
+        <br><br>
+
+        <button type="submit">Update Task</button>
+
+    </form>
+    <div class="links">
+        <a class="pill" href="/tasks/">View Tasks</a>
+        <a class="pill" href="/">Home</a>
+    </div>
+
+    </main>
+</body>
+</html>
