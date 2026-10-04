@@ -1,6 +1,7 @@
 import pool from "../db/pool.js";
 
 export async function getAllTasks(status = "all", search = "") {
+    // READ: Fetch all tasks, optionally filtering by completion status and title.
     let query = `
         SELECT *
         FROM tasks
@@ -30,6 +31,7 @@ export async function getAllTasks(status = "all", search = "") {
 }
 
 export async function getTaskById(id) {
+    // READ: Fetch one task using its ID.
     const result = await pool.query(
         `SELECT *
          FROM tasks
@@ -41,6 +43,7 @@ export async function getTaskById(id) {
 }
 
 export async function createTask(title, description) {
+    // CREATE: Insert a new task and return the created record.
     const result = await pool.query(
         `INSERT INTO tasks (title, description)
          VALUES ($1, $2)
@@ -52,6 +55,7 @@ export async function createTask(title, description) {
 }
 
 export async function updateTask(id, title, description) {
+    // UPDATE: Change a task's title and description, then return the updated record.
     const result = await pool.query(
         `UPDATE tasks
          SET title = $1,
@@ -66,6 +70,7 @@ export async function updateTask(id, title, description) {
 }
 
 export async function deleteTask(id) {
+    // DELETE: Remove a task by ID and return the deleted task's ID.
     const result = await pool.query(
         `DELETE FROM tasks
          WHERE id = $1
@@ -77,6 +82,7 @@ export async function deleteTask(id) {
 }
 
 export async function toggleTaskComplete(id) {
+    // UPDATE: Toggle a task's completion status and return the updated record.
     const result = await pool.query(
         `UPDATE tasks
          SET is_complete = NOT is_complete,

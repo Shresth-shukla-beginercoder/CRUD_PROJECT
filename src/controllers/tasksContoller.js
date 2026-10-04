@@ -6,7 +6,7 @@ import {
     deleteTask,
     toggleTaskComplete
 } from "../models/taskmodel.js";
-
+// Controller functions for handling task-related routes
 export async function showTasks(req, res) {
     try {
         const status = req.query.status || "all";
@@ -25,7 +25,7 @@ export async function showTasks(req, res) {
     }
 }
 
-
+// Controller function to show the edit form for a specific task
 export async function showEditForm(req, res) {
     try {
         const { id } = req.params;
@@ -43,7 +43,7 @@ export async function showEditForm(req, res) {
     }
 }
 
-
+// Controller function to add a new task
 export async function addTask(req, res) {
     try {
         const { title, description } = req.body;
@@ -62,15 +62,15 @@ export async function addTask(req, res) {
         res.status(500).send("Server error");
     }
 }
-
+// Controller function to show the form for creating a new task
 export function shownewtaskform(req,res){
     res.render("tasks/new")
 }
-
+// Controller function to edit an existing task
 export function showHome(req,res){
     res.render("tasks/home")
 }
-
+// Controller function to edit an existing task
 export async function editTask(req, res) {
     try {
         const { id } = req.params;
@@ -95,7 +95,7 @@ export async function editTask(req, res) {
     }
 }
 
-
+// Controller function to remove a task
 export async function removeTask(req, res) {
     try {
         const { id } = req.params;
@@ -112,7 +112,7 @@ export async function removeTask(req, res) {
         res.status(500).send("Server error");
     }
 }
-
+// Controller function to toggle the completion status of a task
 export async function toggleComplete(req, res) {
     try {
         const { id } = req.params;
